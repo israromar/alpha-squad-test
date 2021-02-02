@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+
+import React, { Component } from "react";
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
+import {Home, SignIn, SignUp} from './layouts';
 import './App.css';
 
 function App() {
+
+//  const RenderSecureRoutes = ( )=> {
+//    if(true){
+//     return  (
+//       <Route path="/" component={Home}/>    
+//     )
+//    } else {
+//    }
+//   }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <HashRouter>
+       <div>
+          <h1>Alpha Squad Test</h1>
+          <ul className="header">
+          <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/sign-up">Sign Up</NavLink></li>
+            <li><NavLink to="/sign-in">Sign In</NavLink></li>
+          </ul>
+          <div className="content">
+            <Route exact path="/" component={Home}/>
+            {/* {RenderSecureRoutes()} */}
+            <Route path="/sign-up" component={SignUp}/>
+            <Route path="/sign-in" component={SignIn}/>
+          </div>
+        </div>
+        </HashRouter>
     </div>
   );
 }
