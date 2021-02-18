@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export default function SignUp() {
   const history = useHistory();
@@ -23,19 +23,19 @@ export default function SignUp() {
 
     return (
         <div className="base-container">
-        <div className="header">Login</div>
+        <div className="header">Sign In</div>
         <div className="content">
           <div className="image">
             {/* <img src={loginImg} /> */}
           </div>
           <div className="form">
             <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" onChange={(e)=> setUsername(e.target.value)} />
+              {/* <label htmlFor="username">Username</label> */}
+              <input className="input" type="text" name="username" placeholder="username" onChange={(e)=> setUsername(e.target.value)} />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password" onChange={(e)=> setPassword(e.target.value)}/>
+              {/* <label htmlFor="password">Password</label> */}
+              <input className="input" type="password" name="password" placeholder="password" onChange={(e)=> setPassword(e.target.value)}/>
             </div>
           </div>
         </div>
@@ -44,6 +44,7 @@ export default function SignUp() {
             Sign In
           </button>
         </div>
+          <Link className="link" to="/sign-up">Register</Link>
       </div>
     )
 }

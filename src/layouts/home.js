@@ -8,7 +8,7 @@ export default function Home() {
 
   const [loggedInUser, setLoggedInUser] = useState('temp');
   const [msg, setMsg] = useState('');
-  const [allMsgs,setAllMsgs] = useState([])
+  const [allMsgs,setAllMsgs] = useState([]);
   
    useEffect(()=>{   
     let user = localStorage.getItem("username");
@@ -28,6 +28,7 @@ export default function Home() {
 
   useEffect(() => {
     localStorage.setItem("messages", JSON.stringify(allMsgs));
+
   }, [allMsgs])
   
 
@@ -56,9 +57,9 @@ const handleLogout=()=>{
         
         {allMsgs.map((msg)=>{
           return (
-            <div>
-              <h1>{loggedInUser}: </h1>
-              <span>{msg}</span>
+            <div style={{}}>
+              <span style={{color:'Grey', fontWeight:700, fontSize:20}}>{loggedInUser}: </span>
+              <span style={{ fontSize:12}}>{msg}</span>
             </div>
           )})}
         {/* </div> */}

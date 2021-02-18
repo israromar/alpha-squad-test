@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export default function SignUp() {
     const history = useHistory();
@@ -25,12 +25,12 @@ export default function SignUp() {
           </div>
           <div className="form">
             <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" onChange={(e)=> setUsername(e.target.value)}/>
+              {/* <label htmlFor="username">Username</label> */}
+              <input className="input" type="text" name="username" placeholder="username" onChange={(e)=> setUsername(e.target.value)}/>
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password" onChange={(e)=> setPassword(e.target.value)} />
+              {/* <label htmlFor="password">Password</label> */}
+              <input className="input" type="password" name="password" placeholder="password" onChange={(e)=> setPassword(e.target.value)} />
             </div>
           </div>
         </div>
@@ -39,6 +39,7 @@ export default function SignUp() {
             Sign Up
           </button>
         </div>
+          <p className="link" to="/sign-in">Have an account?   <Link className="link" to="/sign-in"> Sign In</Link></p>
       </div>
     )
 }

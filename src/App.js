@@ -22,18 +22,17 @@ function App() {
   return (
     <div className="App">
        <HashRouter>
-       <div>
-          <h1>Alpha Squad Test</h1>
-          <ul className="header">
+       <div className="container">
+          <h1 className="title">Quick Chat</h1>
+          {/* <ul className="header">
           <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/sign-up">Sign Up</NavLink></li>
             <li><NavLink to="/sign-in">Sign In</NavLink></li>
-          </ul>
+          </ul> */}
           <div className="content">
             <Route exact path="/" component={Home}/>
-            {/* {RenderSecureRoutes()} */}
-            <Route path="/sign-up" component={SignUp}/>
             <Route path="/sign-in" component={SignIn}/>
+            <Route path="/sign-up" component={SignUp}/>
           </div>
         </div>
         </HashRouter>
