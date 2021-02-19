@@ -1,41 +1,47 @@
-
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
 import {
-  Route,
-  NavLink,
-  HashRouter
-} from "react-router-dom";
-import {Home, SignIn, SignUp} from './layouts';
+  // Route,
+  HashRouter,
+} from 'react-router-dom';
+import { Home, SignIn, SignUp } from './layouts';
+import PublicRoute from './PublicRoute';
+import ProtectedRoute from './ProtectedRoute';
+
+import { Authentication } from './helpers/auth';
+import { auth } from './services/firebase';
+
 import './App.css';
 
 function App() {
+  const [loading, setLoading] = useState(false);
+  console.log('🚀 ~ file: App.js ~ line 17 ~ App ~ loading', loading);
 
-//  const RenderSecureRoutes = ( )=> {
-//    if(true){
-//     return  (
-//       <Route path="/" component={Home}/>    
-//     )
-//    } else {
-//    }
-//   }
+  useEffect(() => {
+    console.log('useEffect');
+    auth().onAuthStateChanged((user) => {
+      console.log('🚀 ~ file: App.js ~ line 21 ~ auth ~ user', user);
+      if (user) {
+        Authentication.authenticate(true);
+        setLoading(false);
+      } else {
+        Authentication.authenticate(false);
+      }
+    });
+  });
 
   return (
     <div className="App">
-       <HashRouter>
-       <div className="container">
-          <h1 className="title">Quick Chat</h1>
-          {/* <ul className="header">
-          <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/sign-up">Sign Up</NavLink></li>
-            <li><NavLink to="/sign-in">Sign In</NavLink></li>
-          </ul> */}
+      <HashRouter>
+        <div className="container">
+          <h1 className="title"> Quick Chat </h1>
           <div className="content">
-            <Route exact path="/" component={Home}/>
-            <Route path="/sign-in" component={SignIn}/>
-            <Route path="/sign-up" component={SignUp}/>
+            {/* <Route exact path="/" component={Home} /> */}
+            <PublicRoute path="/sign-in" component={SignIn} />
+            <PublicRoute path="/sign-up" component={SignUp} />
+            <ProtectedRoute exact path="/" component={Home} />
           </div>
         </div>
-        </HashRouter>
+      </HashRouter>
     </div>
   );
 }
